@@ -1,14 +1,21 @@
-import Post from '../models/Post.js';
+import Post from '../models/postModel.js';
 
-exports.getAllPosts = async (req, res) => {
-    const posts = await Post.find().sort({ createdAt: -1 });
-    res.json(posts);
-}
+export const getAllPosts = async (res) => {
+    try {
+        const posts = await Post.find().sort({ createdAt: -1 });
+        res.json(posts);
+    } catch (error) {
+        res.status(500).json({ error: '게시글 조회 실패', details: error.message });
+    }
+};
 
-exports.createPost = async(req, res) => {
-    const {title, content} = req.body;
-    const Post = new Post({title, content});
-    await newPost.save();
-
-    res.status(201).json(newPost);
-}
+export const createPost = async (req, res) => {
+    try {
+        const { title, content } = req.body;
+        const newPost = new Post({ title, content });
+        await newPost.save();
+        res.status(201).json(newPost);
+    } catch (error) {
+        res.status(500).json({ error: '게시글 작성 실패' });
+    }
+};

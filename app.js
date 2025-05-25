@@ -1,14 +1,17 @@
-import express from 'express'
-const app = express()
-const port = 3000
+import express from 'express';
+import cors from 'cors';
+import dbConfig from './configs/db.js';
+import postRoutes from './routes/postRouter.js';
 
-console.log('Starting the Express server...')
-alert(app)
+const port = 3000;
 
-app.get('/', (req, res) => {
-  res.send(app)
-})
+const app = express();
+dbConfig();
+
+app.use(cors());
+app.use(express.json());
+app.use('/api/posts', postRoutes);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Server is running on http://localhost:${port}`);
 })

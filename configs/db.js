@@ -1,15 +1,12 @@
 import mongoose from 'mongoose';
-const dbConfig = async ()=> {
-    try {
-        await mongoose.connect('mongodb://localhost:27017/board', {
-            useNewUrlParser: true,
-            useUnifiedTogplogy: true,
-        })
-        console.log("Database connected successfully");
-    } catch(e) {
-        console.error("Database connection error:", e);
-        process.exit(1);
-    }
-}
+
+const dbConfig = async () => {
+  try {
+    await mongoose.connect('mongodb://localhost:27017/board');
+    console.log('✅ MongoDB 연결 성공');
+  } catch (err) {
+    console.error('❌ Database connection error:', err);
+  }
+};
 
 export default dbConfig;
