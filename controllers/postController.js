@@ -6,7 +6,7 @@ export const getAllPosts = async (req, res) => {
     const size = parseInt(req.query.size) || 10;
     const skip = (page - 1) * size;
 
-    console.log('📦 [getAllPosts] page:', page, 'size:', size);
+    console.log('[getAllPosts] page:', page, 'size:', size);
 
     const totalCount = await Post.countDocuments();
     const posts = await Post.find()
