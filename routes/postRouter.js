@@ -1,11 +1,13 @@
 import express from 'express';
 import { getAllPosts, createPost } from '../controllers/postController.js';
 import Post from '../models/postModel.js';
+import { deletePost } from '../controllers/postController.js';
 
 const router = express.Router();
 
 router.get('/', getAllPosts);
 router.post('/', createPost);
+router.delete('/:id', deletePost);
 
 router.get('/:id', async (req, res) => {
   try {
